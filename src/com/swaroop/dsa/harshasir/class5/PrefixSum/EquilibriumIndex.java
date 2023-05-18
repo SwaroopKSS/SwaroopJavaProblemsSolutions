@@ -15,7 +15,7 @@ public class EquilibriumIndex {
         input.add(4);
         input.add(5);
 
-        System.out.println(solve(A));
+        System.out.println(solve(input));
 
     }
 
