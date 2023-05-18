@@ -1,6 +1,7 @@
 package com.swaroop.dsa.harshasir.class6.SubArrays;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /*
 
@@ -48,9 +49,38 @@ public class GenerateAllSubArrays {
 	public static void main(String[] args) {
 
 	}
-	
-	 public static ArrayList<ArrayList<Integer>> solve(ArrayList<Integer> A) {
-		return null;
-	    }
+
+	public static ArrayList<ArrayList<Integer>> solve(ArrayList<Integer> A) {
+
+
+         /*Scanner sc = new Scanner(System.in);
+		 int n = sc.nextInt();
+		 int[] array = new int[n];
+		 for(int i=0;i<array.length;i++) {
+			 array[i]=sc.nextInt();
+		 }*/
+
+		ArrayList<ArrayList<Integer>> respose = new ArrayList<ArrayList<Integer>>();
+
+		for(int i=0;i< A.size();i++) {
+
+			for(int j=i;j<A.size();j++) {
+
+				ArrayList<Integer>  subarray = new ArrayList<>();
+				for(int k=i;k<=j;k++) {
+					subarray.add(A.get(k));
+					// System.out.print(array[k]);
+                     /*if(!(i==j&&array[array.length-1]==array[k])) {
+						 System.out.print(" ");
+					 }*/
+				}
+				respose.add(subarray);
+				//System.out.println();
+			}
+
+		}
+
+		return respose;
+	}
 
 }
