@@ -1,4 +1,4 @@
-package com.swaroop.dsa.harshasir.class5.PrefixSum;
+package com.swaroop.dsa.harshasir.PrefixSum;
 
 import java.util.ArrayList;
 

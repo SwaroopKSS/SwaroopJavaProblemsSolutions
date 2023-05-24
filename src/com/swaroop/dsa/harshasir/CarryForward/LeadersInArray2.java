@@ -1,4 +1,4 @@
-package com.swaroop.dsa.harshasir.class4.CarryForward;
+package com.swaroop.dsa.harshasir.CarryForward;
 
 import java.util.ArrayList;
 

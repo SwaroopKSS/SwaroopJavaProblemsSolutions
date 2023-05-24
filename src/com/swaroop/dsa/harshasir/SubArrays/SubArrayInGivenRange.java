@@ -1,4 +1,4 @@
-package com.swaroop.dsa.harshasir.class6.SubArrays;
+package com.swaroop.dsa.harshasir.SubArrays;
 
 import java.util.ArrayList;
 

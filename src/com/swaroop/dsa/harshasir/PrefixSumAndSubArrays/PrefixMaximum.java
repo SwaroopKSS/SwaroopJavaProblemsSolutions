@@ -1,4 +1,4 @@
-package com.swaroop.dsa.harshasir.class6.PrefixSumAndSubArrays;
+package com.swaroop.dsa.harshasir.PrefixSumAndSubArrays;
 
 /*
 Q2. Prefix maximum

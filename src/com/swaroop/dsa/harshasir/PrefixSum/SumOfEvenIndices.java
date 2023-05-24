@@ -1,8 +1,9 @@
-package com.swaroop.dsa.harshasir.class5.PrefixSum;
+package com.swaroop.dsa.harshasir.PrefixSum;
 
 import java.util.ArrayList;
 
-public class SumOfOddIndices {
+public class SumOfEvenIndices {
+
 
     public ArrayList<Integer> solve(ArrayList<Integer> A, ArrayList<ArrayList<Integer>> B) {
 
@@ -10,13 +11,10 @@ public class SumOfOddIndices {
 
         ArrayList<Integer> ps = new ArrayList<>();
 
-        ps.add(0);
-
-        //odd indices
+        ps.add((A.get(0)));
 
         for(int i=1;i<A.size();i++){
-            if(i%2 != 0){
-                //Odd incides
+            if(i%2 == 0){
                 ps.add((ps.get(i-1) + A.get(i)));
             }else{
                 ps.add(ps.get(i-1));
