@@ -79,14 +79,10 @@ public class RangeSumQuery {
 
         ArrayList<Long> ps = new ArrayList<>();
 
-        //ps.set(0, Long.valueOf(A.get(0)));
-
         ps.add(Long.valueOf(A.get(0)));
 
 
         for(int i=1;i<A.size();i++){
-
-            //ps.set(i,Long.valueOf(ps.get(i-1) + A.get(i)) );
 
             ps.add(Long.valueOf(ps.get(i-1) + A.get(i) ));
 
