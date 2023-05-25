@@ -32,7 +32,40 @@ Return an array of integers containing frequency of the each element in B.
 */
 public class FrequencyOfElementQuery {
 
-  public ArrayList<Integer> solve(ArrayList<Integer> A, ArrayList<Integer> B) {
+
+ //A=[6,3,3,6,7,8,7,3,7]
+
+ //B=[10,9,8]
+
+ public static void main(String[] args) {
+
+  ArrayList<Integer> A = new ArrayList<>();
+
+  A.add(6);
+  A.add(3);
+  A.add(3);
+  A.add(6);
+  A.add(7);
+  A.add(8);
+  A.add(7);
+  A.add(3);
+  A.add(7);
+
+
+  ArrayList<Integer> B = new ArrayList<>();
+
+  B.add(10);
+  B.add(9);
+  B.add(8);
+
+  System.out.println(solve(A,B));
+
+ }
+
+  public static ArrayList<Integer> solve(ArrayList<Integer> A, ArrayList<Integer> B) {
+
+
+
 
    ArrayList<Integer> response = new ArrayList<>();
 
@@ -52,8 +85,8 @@ public class FrequencyOfElementQuery {
 
    for(int q=0;q<B.size();q++){
 
-    if(map.containsKey(q)){
-     response.add(map.get(q));
+    if(map.containsKey(B.get(q))){
+     response.add(map.get(B.get(q)));
     }else{
      response.add(0);
     }
