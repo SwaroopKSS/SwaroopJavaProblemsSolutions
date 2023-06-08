@@ -86,6 +86,16 @@ public class ImplementPowerFunction {
 
         //used inbuild java flood mod method t avoid incorrect modulus operator result for negative numbers
 
+        //or
+
+        // I can also use the below line for return statement
+
+        //return A >= 0 ? (int)((A%C) * y%C)%C : (int)((A%C + C) * y%C)%C;
+
+        //return A >= 0 ? (int)((A%C) * y%C)%C : (int)((A%C + C) * y%C)%C;
+
+        //long is used to avoid overflow and converted to back to int
+
     }
 
 }
