@@ -50,5 +50,25 @@ Problem Description
         1
 
 */
+
+/*
+
+hint:
+
+We will try to generate each of the rows through recursion.
+        The first row will have a single integer 0.
+        The subsequent rows can be found by replacing 0 with 0 and 1 and
+        replacing 1 with 1 and 0.
+
+        Time Complexity : O(2A)
+        Space Complexity : O(2A)
+
+*/
 public class KthSymbolEasy {
+
+   /* public int solve(int A, int B) {
+    }
+
+
+    public */
 }
