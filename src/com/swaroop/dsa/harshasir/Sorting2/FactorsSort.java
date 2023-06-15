@@ -42,7 +42,6 @@ Problem Description
 public class FactorsSort {
 
     public ArrayList<Integer> solve(ArrayList<Integer> A) {
-
         Collections.sort(A, new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
@@ -50,13 +49,11 @@ public class FactorsSort {
                 int c2=CountFactors(o2);
                 if(c1==c2){
                     return o1-o2;
-
                 }else{
                    return c1-c2;
                 }
             }
         });
-
         return A;
     }
 
