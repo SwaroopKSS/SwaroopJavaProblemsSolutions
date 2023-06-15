@@ -1,16 +1,60 @@
-package com.swaroop.dsa.harshasir.Sorting1;
+package com.swaroop.dsa.harshasir.Sorting2;
 
-public class MergeSort {
+/*
 
-    public int[] solve(int[] A) {
+Q1. Inversion count in an array
 
-        int low = 0;
-        int high = A.length-1;
+Problem Description
+        Given an array of integers A. If i < j and A[i] > A[j], then the pair (i, j) is called an inversion of A. Find the total number of inversions of A modulo (109 + 7).
 
-        return mergeSort(A, low, high);
+
+
+        Problem Constraints
+        1 <= length of the array <= 105
+
+        1 <= A[i] <= 109
+
+
+
+        Input Format
+        The only argument given is the integer array A.
+
+
+
+        Output Format
+        Return the number of inversions of A modulo (109 + 7).
+
+
+
+        Example Input
+        Input 1:
+
+        A = [1, 3, 2]
+        Input 2:
+
+        A = [3, 4, 1, 2]
+
+
+        Example Output
+        Output 1:
+
+        1
+        Output 2:
+
+        4
+
+*/
+public class InversionCountInArray {
+
+    int count = 0;
+    int mod = 1000000007;
+    public int solve(int[] A) {
+
+        mergeSort(A, 0, A.length-1);
+
+        return count%mod;
 
     }
-
 
     public int[] mergeSort(int[] A, int low, int high){
 
@@ -48,6 +92,10 @@ public class MergeSort {
                 i++;
             }
             else{
+
+                count = count + (m-i);
+                count=count%mod;
+
                 result[k]=b[j];
                 j++;
             }

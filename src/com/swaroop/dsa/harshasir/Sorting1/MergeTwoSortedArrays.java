@@ -46,9 +46,44 @@ Output 2:
 public class MergeTwoSortedArrays {
 
     // DO NOT MODIFY THE LIST. IT IS READ ONLY
-    public ArrayList<Integer> solve(final List<Integer> A, final List<Integer> B) {
+    public int[] solve(final int[] A, final int[] B) {
 
+        return merge(A,B);
+    }
 
-        return null;
+    private int[] merge(int[] a, int[] b) {
+
+        int m = a.length;
+        int n = b.length;
+
+        int[] result = new int[m+n];
+
+        int i=0,j=0,k=0;
+
+        while(i<m && j<n){
+
+            if(a[i]<=b[j]){
+                result[k]=a[i];
+                i++;
+            }
+            else{
+                result[k]=b[j];
+                j++;
+            }
+            k++;
+
+        }
+
+        while(j<n){
+            result[k]=b[j];
+            j++;k++;
+        }
+
+        while(i<m){
+            result[k]=a[i];
+            i++;k++;
+        }
+
+        return result;
     }
 }
