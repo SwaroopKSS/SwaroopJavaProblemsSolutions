@@ -3,11 +3,11 @@ package com.swaroop.dsa.soumyasir.class1.IntroToProblemSolving;
 /*
 
 Q1. Find Perfect Numbers
-Unsolved
-character backgroundcharacter
-Stuck somewhere?
-Ask for help from a TA and get it resolved.
-Get help from TA.
+
+
+Problem Constraints
+1 <= A <= 106
+
 Problem Description
 You are given an integer A. You have to tell whether it is a perfect number or not.
 
@@ -19,6 +19,35 @@ A proper divisor of a natural number is the divisor that is strictly less than t
 
 Problem Constraints
 1 <= A <= 106
+
+
+
+Input Format
+First and only argument contains a single positive integer A.
+
+
+
+Output Format
+Return 1 if A is a perfect number and 0 otherwise.
+
+
+
+Example Input
+Input 1:
+
+A = 4
+Input 2:
+
+A = 6
+
+
+Example Output
+Output 1:
+
+0
+Output 2:
+
+1
 
 */
 
@@ -33,19 +62,16 @@ public class FindPerfectNumbers {
 	
 public static int solve(int A) {
 		
-		int count = 0;
+		int sum = 0;
 		
-		for (int i = 1; (i * i) <= A; i++) {
+		for (int i = 1; i<A; i++) {
 			if (A % i == 0) {
-				if (i == A / i) {
-					count = count + 1;
-				} else {
-					count = count + 2;
-				}
+				sum = sum + i;
 			}
 
-		}		
-		return count;
+		}
+
+		return (A==sum) ? 1 : 0;
     }
 
 }
