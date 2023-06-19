@@ -39,4 +39,41 @@ Q1. Range Sum - II
 */
 
 public class RangeSum11 {
+
+    public static void main(String[] args){
+
+        int[] A = {1, 2, 1, 4};
+        int[][] B = {
+                {2, 3, 2},
+                {1, 4, 5},
+                {4, 4, 1}
+        };
+
+        System.out.println(solve(A, B));
+
+    }
+
+
+
+    public static int[] solve(int[] A, int[][] B) {
+
+       // int[] res = new int[A.length];
+
+        for(int i=0;i<B.length;i++){
+
+            int l = B[i][0];
+            int r = B[i][1];
+            int c = B[i][2];
+
+            for(int j = (l-1);j<=(r-1);j++){
+
+                A[j] = A[j] + c;
+
+            }
+
+        }
+
+        return A;
+    }
+
 }
