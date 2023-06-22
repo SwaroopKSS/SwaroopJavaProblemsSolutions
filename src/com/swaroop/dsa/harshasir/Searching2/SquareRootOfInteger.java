@@ -44,20 +44,27 @@ Problem Description
 
 */
 public class SquareRootOfInteger {
-    public int sqrt(int A) {
+
+    public static void main(String args[]){
+
+        System.out.println(sqrt(2147483647));
+        //System.out.println(sqrt(625));
+
+    }
+    public static int sqrt(int A) {
 
         if(A==0 || A==1){
             return A;
         }
 
 
-        int l = 1;
-        int h = A;
+        long l = 1;
+        long h = A;
 
         long ans = -1;
 
         while(l<=h){
-            int m = (l+h)/2;
+            long m = (l+h)/2;
             if(m*m==A){
                 return (int)m;
             }
