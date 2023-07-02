@@ -58,4 +58,20 @@ Problem Description
 
 */
 public class FindInMatrix {
+    public int solve(int[][] A, int B) {
+
+
+        for(int i=0;i<A.length;i++){
+
+            for(int j=0;j<A[i].length;j++){
+
+                if(A[i][j]==B){
+                    return 1;
+                }
+
+            }
+
+        }
+        return 0;
+    }
 }
