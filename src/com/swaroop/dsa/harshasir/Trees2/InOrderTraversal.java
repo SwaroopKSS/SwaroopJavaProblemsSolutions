@@ -1,4 +1,6 @@
-package com.swaroop.dsa.harshasir.Trees1;
+package com.swaroop.dsa.harshasir.Trees2;
+
+import com.swaroop.dsa.harshasir.Trees1.PreOrderTraversal;
 
 /*
 
