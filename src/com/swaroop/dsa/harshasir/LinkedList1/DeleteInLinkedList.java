@@ -55,5 +55,53 @@ class ListNode {
 public class DeleteInLinkedList {
 
     public ListNode solve(ListNode A, int B) {
+        if (B == 0) {
+            return A.next; // Special case: Delete the first node head = A
+        }
+
+        ListNode prev = null;
+        ListNode current = A;
+
+        for (int i = 0; i < B; i++) {
+            prev = current;
+            current = current.next;
+        }
+
+        if (prev != null) {
+            prev.next = current.next;
+        }
+
+        return A;
+    }
+
+    public static void printList(ListNode head) {
+        ListNode current = head;
+        while (current != null) {
+            System.out.print(current.val + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        // Example input
+        ListNode head1 = new ListNode(1);
+        head1.next = new ListNode(2);
+        head1.next.next = new ListNode(3);
+        int B1 = 1;
+
+        ListNode head2 = new ListNode(4);
+        head2.next = new ListNode(3);
+        head2.next.next = new ListNode(2);
+        head2.next.next.next = new ListNode(1);
+        int B2 = 0;
+
+        LinkedListDeletion solution = new LinkedListDeletion();
+
+        ListNode newHead1 = solution.deleteBthNode(head1, B1);
+        printList(newHead1); // Output: 1 3
+
+        ListNode newHead2 = solution.deleteBthNode(head2, B2);
+        printList(newHead2); // Output: 3 2 1
     }
 }
