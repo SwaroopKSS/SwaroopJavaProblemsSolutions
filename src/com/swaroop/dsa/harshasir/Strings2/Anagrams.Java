@@ -58,5 +58,27 @@ Problem Description
 public class Solution {
     // DO NOT MODIFY THE LIST. IT IS READ ONLY
     public ArrayList<ArrayList<Integer>> anagrams(final List<String> A) {
+        HashMap<String, ArrayList<Integer>> map = new HashMap<>();
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+
+        for (int i = 0; i < A.size(); i++) {
+            char[] charArray = A.get(i).toCharArray();
+            Arrays.sort(charArray);
+            String sortedStr = new String(charArray);
+
+            if (map.containsKey(sortedStr)) {
+                map.get(sortedStr).add(i + 1); // Adding 1 to convert to 1-based index
+            } else {
+                ArrayList<Integer> list = new ArrayList<>();
+                list.add(i + 1); // Adding 1 to convert to 1-based index
+                map.put(sortedStr, list);
+            }
+        }
+
+        for (Map.Entry<String, ArrayList<Integer>> entry : map.entrySet()) {
+            result.add(entry.getValue());
+        }
+
+        return result;
     }
 }
