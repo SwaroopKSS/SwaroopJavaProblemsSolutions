@@ -45,11 +45,11 @@ Problem Description
 
 */
 
-class ListNode {
+class ListNode1 {
     int val;
     ListNode next;
 
-    ListNode(int x) {
+    ListNode1(int x) {
         this.val = x;
         this.next = null;
     }
