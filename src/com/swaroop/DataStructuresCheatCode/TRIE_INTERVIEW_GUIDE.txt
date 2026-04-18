@@ -1,0 +1,318 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    TRIE - INTERVIEW CHEAT SHEET                             ║
+║                  "What it is, Why it matters, How to use it"                ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+🎯 QUICK ANSWER: YES, TRIES ARE ASKED IN INTERVIEWS!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📚 WHAT IS A TRIE?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+A Trie (pronounced "TRY") = "Retrieval Tree"
+
+It's a tree-like data structure that stores strings efficiently by using 
+common prefixes. Perfect for fast prefix matching!
+
+EXAMPLE: Words ["cat", "car", "dog"]
+
+                root
+               /    \
+              c      d
+             / \      \
+            a   (...)   o
+           / \          |
+          t   r         g
+          |            (end: "dog")
+       (end: "cat") (end: "car")
+
+Each path from root = a prefix or complete word.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚡ COMPLEXITY ANALYSIS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Operation          Time        Space
+──────────────────────────────────────
+Insert             O(m)        O(ALPHABET_SIZE * nodes)
+Search             O(m)        
+StartsWith        O(m)        
+Delete             O(m)        
+Autocomplete       O(n)        n = words with prefix
+
+where m = length of word
+      ALPHABET_SIZE = 26 (for a-z) or more
+
+
+⚠️ SPACE TRADEOFF:
+├─ Pro: O(m) search time (FAST!)
+└─ Con: Lots of space (each node stores 26+ pointers)
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎓 WHEN TO USE TRIE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ PERFECT FOR:
+├─ Autocomplete/Search suggestions (Google, Spotify)
+├─ Spell checking (MS Word, IDE)
+├─ IP routing tables (networking)
+├─ Longest common prefix
+├─ Word games (Scrabble, Wordle)
+├─ T9 input (old mobile phones)
+├─ Dictionary implementations
+└─ Finding all words with a prefix
+
+❌ NOT FOR:
+├─ Simple key-value lookup (use HashMap instead)
+├─ Frequency counting (use HashMap instead)
+└─ When you need to optimize space (Trie uses lots!)
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📋 TRIE NODE STRUCTURE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+class TrieNode {
+    TrieNode[] children = new TrieNode[26];  // For a-z
+    boolean isEndOfWord = false;             // Mark end of word
+    String word = null;                      // Optional: store word
+}
+
+KEY INSIGHTS:
+├─ 26 children pointers (one for each letter)
+├─ isEndOfWord marks where a valid word ends
+├─ Storing the word itself helps with retrieval
+└─ null children = path doesn't exist
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💻 BASIC OPERATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1️⃣ INSERT "cat"
+   root
+     |
+     c (idx=2)
+     |
+     a (idx=0)
+     |
+     t (idx=19) → isEndOfWord = true
+
+2️⃣ SEARCH "cat"
+   Follow: root → c → a → t
+   Check: node.isEndOfWord? → YES ✓
+
+3️⃣ STARTS_WITH "ca" (prefix check)
+   Follow: root → c → a
+   Path exists? → YES ✓ (even if "ca" isn't a complete word)
+
+4️⃣ DELETE "cat"
+   Set isEndOfWord = false at 't' node
+   (Keep structure in case "ca" is another word's prefix)
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔥 TOP INTERVIEW QUESTIONS (Using Tries)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+FREQUENCY IN INTERVIEWS:
+
+★★★★★ (VERY COMMON - Expect this!)
+├─ Implement Trie (LeetCode 208)
+├─ Search Word in Trie (autocomplete variant)
+├─ Longest Word in Dictionary (LeetCode 720)
+└─ Replace Words (LeetCode 648)
+
+★★★★ (COMMON)
+├─ Word Search II (LeetCode 212) - Hard!
+├─ Palindrome Pairs (LeetCode 336) - Hard!
+├─ Longest Common Prefix (LeetCode 14)
+└─ Design Search Autocomplete System (LeetCode 642)
+
+★★★ (FAIRLY COMMON)
+├─ Alien Dictionary (Topological sort + Trie)
+├─ Minimum Unique Word Abbreviation
+└─ Word Squares
+
+★★ (SOMETIMES ASKED)
+├─ T9 Input (Trie variant)
+└─ Phone number combinations
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💡 INTERVIEW TIPS FOR TRIE QUESTIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+WHEN YOU SEE THE WORD...         THINK TRIE:
+├─ "autocomplete"               ✓ → Trie is perfect
+├─ "prefix"                     ✓ → Trie solves it
+├─ "dictionary"                 ✓ → Could use Trie
+├─ "spell check"                ✓ → Trie handles it
+├─ "word suggestions"           ✓ → Trie all the way!
+├─ "find all words starting with..." → Definitely Trie
+└─ "longest common prefix"      ✓ → Trie + DFS
+
+COMMON PATTERNS:
+
+1. INSERT & SEARCH
+   void insert(String word) { ... }
+   boolean search(String word) { ... }
+
+2. AUTOCOMPLETE (Most common!)
+   List<String> autocomplete(String prefix) {
+       // Navigate to end of prefix
+       // DFS to find all words with that prefix
+       // Return results
+   }
+
+3. DFS TRAVERSAL
+   void dfs(TrieNode node, String current, List<String> results) {
+       if (node.isEndOfWord) {
+           results.add(node.word);
+       }
+       for (TrieNode child : node.children) {
+           if (child != null) {
+               dfs(child, current + letter, results);
+           }
+       }
+   }
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️ COMMON MISTAKES IN TRIE INTERVIEWS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+❌ MISTAKE 1: Confusing search() with startsWith()
+   search("car") = Check if "car" is a complete word (isEndOfWord = true)
+   startsWith("ca") = Check if "ca" is a prefix (just path exists)
+
+❌ MISTAKE 2: Not handling null children
+   Always check: if (node.children[idx] == null) { ... }
+
+❌ MISTAKE 3: Using HashMap for children
+   int[] is faster than HashMap<Character, TrieNode>
+   Sacrifice a bit of space for speed (interview trade-off)
+
+❌ MISTAKE 4: Forgetting to mark word end
+   node.isEndOfWord = true; // Required!
+
+❌ MISTAKE 5: Not storing the word itself
+   Optional but helpful: node.word = word;
+   Saves you from reconstructing it later
+
+❌ MISTAKE 6: Delete leaves child nodes hanging
+   Properly clean up during deletion:
+   - Set isEndOfWord = false
+   - Only delete node if it has no children
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 SPACE OPTIMIZATION TRICKS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Standard Trie uses LOTS of space. Optimization strategies:
+
+1. COMPRESSED TRIE (Suffix Tree)
+   └─ Combine nodes with single child
+   └─ Less memory, slightly slower
+
+2. HASH MAP CHILDREN
+   ├─ Use HashMap<Character, TrieNode> instead of array
+   ├─ Better space if sparse
+   ├─ Slightly slower (HashMap overhead)
+   └─ Use when alphabet is large
+
+3. BIT MANIPULATION
+   └─ Use bitset to mark which children exist
+   └─ Advanced optimization
+
+4. TERNARY TRIE
+   └─ Each node has 3 children (for ternary search)
+   └─ Space: O(log n) but slower
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📖 EXAMPLE: AUTOCOMPLETE (Most Asked)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PROBLEM: Build autocomplete system
+Input: Dictionary ["apple", "app", "apply"]
+Query: autocomplete("app") → ["app", "apple", "apply"]
+
+SOLUTION:
+1. Build Trie with all dictionary words
+2. For query "app", navigate to end of "app"
+3. DFS from that node to find all words
+4. Return list
+
+COMPLEXITY:
+├─ Building: O(N*L) where N=words, L=length
+├─ Autocomplete: O(N) where N=total chars in results
+└─ Space: O(N*L) for trie structure
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ INTERVIEW CHECKLIST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Before implementing Trie, make sure you can:
+
+□ Draw a Trie structure by hand
+□ Explain when to use Trie vs HashMap
+□ Code insert/search/startsWith from memory
+□ Handle all 26 alphabet letters
+□ Implement delete (proper cleanup)
+□ Autocomplete with DFS
+□ Explain space-time tradeoffs
+□ Handle edge cases (empty string, single char)
+□ Discuss optimization strategies
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📚 WHERE WE COVERED THIS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+NEW FILE CREATED:
+└─ TrieDataStructure.java (17.2 KB)
+
+   Includes:
+   ├─ Basic Trie implementation
+   ├─ Autocomplete system
+   ├─ Longest common prefix
+   ├─ Word Search II (hard problem!)
+   ├─ Replace Words
+   ├─ Palindrome Pairs (very hard!)
+   └─ All with working main() examples
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎓 SUMMARY: IS TRIE ASKED IN INTERVIEWS?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ YES - Definitely Asked!
+
+Frequency:
+├─ Google: ★★★★★ (Very Common)
+├─ Meta: ★★★★ (Common)
+├─ Amazon: ★★★★ (Common)
+├─ Microsoft: ★★★ (Fairly Common)
+└─ Startups: Varies but good to know
+
+Best For:
+├─ Senior Engineers (expected to know)
+├─ Mid-level (good to know)
+├─ Junior (nice to know)
+
+Your Interview Prep:
+├─ Learn: Basic Trie (insert, search, startsWith)
+├─ Practice: Autocomplete and LongestCommonPrefix
+├─ Challenge: WordSearchII and PalindromePairs
+└─ Master: All 5 problems in TrieDataStructure.java
+
+You're now ready! 🚀
+
+
+═══════════════════════════════════════════════════════════════════════════════
+Location: src/com/swaroop/DataStructuresCheatCode/TrieDataStructure.java
+═══════════════════════════════════════════════════════════════════════════════
